@@ -2,11 +2,10 @@ package main
 
 import (
 	"encoding/json"
+	pb "go-time/consignment-service/proto/consignment"
 	"io/ioutil"
 	"log"
 	"os"
-
-	pb "go-time/consignment-service/proto/consignment"
 
 	microclient "github.com/micro/go-micro/client"
 	"github.com/micro/go-micro/cmd"
@@ -45,8 +44,8 @@ func main() {
 	if err != nil {
 		log.Fatalf("Could not parse file: %v", err)
 	}
+	r, err := client.CreateConsignment(context.Background(), consignment)
 
-	r, err := client.CreateConsignment(context.TODO(), consignment)
 	if err != nil {
 		log.Fatalf("Could not create: %v", err)
 	}
